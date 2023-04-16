@@ -10,12 +10,12 @@ stockinfo <- function(stockname){
   dataframe2 <- table_scrap(paste0("https://www.fundamentus.com.br/detalhes.php?papel=",stockname),choose = 1)
 
   # extracting stock price from table 1
-   preco_acao <- colnames(dataframe2[(4)])
+  preco_acao <- colnames(dataframe2[(4)])
 
   # cleaning table 3
- dataframe1 <- dataframe1[,-c(1,2)]
- dataframe11 <- dataframe1[,1:2]
- dataframe12 <- dataframe1[,3:4]
+  dataframe1 <- dataframe1[,-c(1,2)]
+  dataframe11 <- dataframe1[,1:2]
+  dataframe12 <- dataframe1[,3:4]
   dataframe1_all <- rbind(dataframe11, dataframe12)
   dataframe1_all <- dataframe1_all %>% `colnames<-`(c("indicador", "valor"))
  
@@ -24,39 +24,36 @@ stockinfo <- function(stockname){
   
   # merging tables with price and renaming
   dataframe1_all <- dataframe1_all %>%
-    mutate(Acao = stockname) %>%
-    spread(key = indicador, value = valor)
+  mutate(Acao = stockname) %>%
+  spread(key = indicador, value = valor)
   preco_hoje = c(preco_acao)
   dataframe1_all <- cbind(dataframe1_all,preco_hoje)
-  
-  
-  
 }
 
 # Build here your portfolio and shortlist, for example "BBAS3" 
-portfolio <- c("TAEE3","cmig4"
+portfolio <- c("TAEE3","cmig4","BBAS3"
             )
-bovespa <- c("ASAI3",             "FLRY3",  "RENT3",             "EGIE3",
-             "ENBR3",             "ELET6",    "HYPE3",             "GOAU4",
-             "TIMS3",             "WEGE3",    "ABEV3",            "GGBR4",
-             "UGPA3",             "TAEE11",  "CPFE3",             "BPAC11",
-             "ITUB4",             "RAIL3",   "BBSE3",             "EQTL3",
-             "RADL3",             "BEEF3",   "ITSA4",             "PETR3",
-             "CIEL3",             "BRAP4",     "VALE3",             "SUZB3",
-             "PRIO3",             "KLBN11",   "MGLU3",             "CYRE3",
-             "PETZ3",             "AMER3",   "BRML3",             "IGTI11",
-             "IRBR3",             "EZTC3",           "LWSA3",             "GOLL4",
+bovespa <- c("ASAI3",             "FLRY3",            "RENT3",             "EGIE3",
+             "ENBR3",             "ELET6",            "HYPE3",             "GOAU4",
+             "TIMS3",             "WEGE3",            "ABEV3",            "GGBR4",
+             "UGPA3",             "TAEE11",           "CPFE3",             "BPAC11",
+             "ITUB4",             "RAIL3",            "BBSE3",             "EQTL3",
+             "RADL3",             "BEEF3",            "ITSA4",             "PETR3",
+             "CIEL3",             "BRAP4",            "VALE3",             "SUZB3",
+             "PRIO3",             "KLBN11",           "MGLU3",             "CYRE3",
+             "PETZ3",             "AMER3",            "BRML3",             "IGTI11",
+             "IRBR3",             "EZTC3",            "LWSA3",             "GOLL4",
              "VIIA3",             "JBSS3",            "MRVE3",             "CRFB3",
-             "BRFS3",             "DXCO3",             "SOMA3",             "BPAN4",  
-             "CASH3",             "ALPA4",             "NTCO3",             "LREN3",    
-             "BBAS3",             "EMBR3",             "ECOR3",             "QUAL3",   
-             "TOTS3",             "RDOR3",             "AZUL4",             "B3SA3",  
-             "SLCE3",             "SULA11",             "VBBR3",             "CCRO3", 
-             "PETR4",             "SMTO3",             "PCAR3",             "YDUQ3",  
-             "CVCB3",             "ENEV3",             "VIVT3",             "SANB11",
-             "BBDC3",             "MRFG3",             "COGN3",             "BBDC4", 
-             "BRKM5",             "CMIN3",             "POSI3",             "CSAN3",   
-             "HAPV3",             "RAIZ4",             "RRRP3",             "CSNA3", 
+             "BRFS3",             "DXCO3",            "SOMA3",             "BPAN4",  
+             "CASH3",             "ALPA4",            "NTCO3",             "LREN3",    
+             "BBAS3",             "EMBR3",            "ECOR3",             "QUAL3",   
+             "TOTS3",             "RDOR3",            "AZUL4",             "B3SA3",  
+             "SLCE3",             "SULA11",           "VBBR3",             "CCRO3", 
+             "PETR4",             "SMTO3",            "PCAR3",             "YDUQ3",  
+             "CVCB3",             "ENEV3",            "VIVT3",             "SANB11",
+             "BBDC3",             "MRFG3",            "COGN3",             "BBDC4", 
+             "BRKM5",             "CMIN3",            "POSI3",             "CSAN3",   
+             "HAPV3",             "RAIZ4",            "RRRP3",             "CSNA3", 
              "USIM5" 
               )
 shortlist <- c("petr4","vale3"
